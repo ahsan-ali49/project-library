@@ -1,0 +1,28 @@
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+button {
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  width: 10%;
+  height: 35px;
+  border-radius: 5px;
+  font-weight: bolder;
+}
+
+#bk-dspl-div {
+  height: 80%;
+  margin-top: 1%;
+  border: 5px solid black;
+  padding: 1%;
+}
+
+.card {
+  background-color: gold;
+  width: 20%;
+  height: 20%;
+  margin: 1%;
+}
