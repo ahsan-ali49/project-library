@@ -1,57 +1,63 @@
-const myLibrary = [];
+let myLibrary = [];
 
-function Book(title, author, pages, readStatus) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readStatus = readStatus;
+function Book() {
+  this.name = prompt("Enter Name: ");
+  this.author = prompt("Enter Author Name: ");
+  this.pages = prompt("Enter No. of Pages: ");
+  this.read = prompt("Enter readStatus(true/false): ");
+  console.log("Hello World!");
+  // console.log("Hello World!");
 }
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-function createCard(theBook) {
+const showBook = (element) => {
+  createCard(element);
+  console.log(element);
+};
+
+createCard = (element) => {
+  const mainContainer = document.getElementById("bk-dspl-div");
   const card = document.createElement("div");
-  card.classList.add("card");
-  const appendCard = createPara(card, theBook);
-  return appendCard;
-}
+  card.className = "card";
 
-function createPara(card) {
-  const titlePara = document.createElement("p");
-  const authorPara = document.createElement("p");
-  const pagesPara = document.createElement("p");
-  const readPara = document.createElement("p");
+  const ULList = document.createElement("ul");
 
-  titlePara.textContent = `Name: ${myLibrary[0].title}`;
-  authorPara.textContent = `Author: ${myLibrary[0].author}`;
-  pagesPara.textContent = `Pages#: ${myLibrary[0].pages}`;
-  readPara.textContent = `readStatus: ${myLibrary[0].pages}`;
+  let listItem = document.createElement("li");
+  listItem.textContent = `Name: ${element["name"]}`;
+  ULList.appendChild(listItem);
 
-  card.appendChild(titlePara);
-  card.appendChild(authorPara);
-  card.appendChild(pagesPara);
-  card.appendChild(readPara);
-  return card;
-}
+  listItem = document.createElement("li");
+  listItem.textContent = `Author: ${element["author"]}`;
+  ULList.appendChild(listItem);
 
-function showBook(theBook) {
-  const container = document.querySelector("#bk-dspl-div");
-  const card = createCard(theBook[0]);
-  container.appendChild(card);
-}
+  listItem = document.createElement("li");
+  listItem.textContent = `Pages: ${element["pages"]}`;
+  ULList.appendChild(listItem);
 
-const theHobbit = new Book("The Hobbit", "J.R.R Tolkien", 293, true);
-const elevenMinutes = new Book("Eleven Minutes", "Paulo Coelho", 293, true);
-const murderOfHistory = new Book("Murder of History", "K.K Aziz", 293, true);
+  listItem = document.createElement("li");
+  listItem.textContent = `readStatus: ${element["read"]}`;
+  ULList.appendChild(listItem);
 
-addBookToLibrary(theHobbit);
-addBookToLibrary(elevenMinutes);
-addBookToLibrary(murderOfHistory);
+  card.appendChild(ULList);
 
-console.log(myLibrary);
+  const newBtn = document.createElement("button");
+  newBtn.textContent = "Delete";
+  newBtn.className = "dlt-bk-btn";
 
-document.addEventListener("DOMContentLoaded", function callShow(myLibrary) {
-  showBook(myLibrary);
+  card.appendChild(newBtn);
+  mainContainer.appendChild(card);
+
+  newBtn.addEventListener("click", () => {
+    mainContainer.removeChild(card);
+  });
+};
+
+const newBtn = document.querySelector(".new-bk-btn");
+newBtn.addEventListener("click", () => {
+  let book1 = new Book();
+  addBookToLibrary(book1);
+  showBook(book1);
 });
